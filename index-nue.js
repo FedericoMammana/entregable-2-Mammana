@@ -1,40 +1,12 @@
-// Array de guantes
-const guantes = [
-  {
-    id: 1,
-    nombre: "Title Rojo",
-    marca: "Title",
-    precio: 50000,
-    imagen: "../images/guante-rojo.jpg",
-    stock: 1,
-  },
-  {
-    id: 2,
-    nombre: "Rulz Gris",
-    marca: "Rulz",
-    precio: 60000,
-    imagen: "../images/guante-gris.jpg",
-    stock: 2,
-  },
-  {
-    id: 3,
-    nombre: "Title Silver",
-    marca: "Title",
-    precio: 70000,
-    imagen: "../images/guante-platinum.jpg",
-    stock: 3,
-  },
-  {
-    id: 4,
-    nombre: "Title Gold",
-    marca: "Title",
-    precio: 145000,
-    imagen: "../images/guante-gold.jpg",
-    stock: 1,
-  },
-];
+// URL de la base en .json
+
+const url_db = "./db.json";
+
+// Inicializo el carrito
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// Imprimimos los guantes
 
 function imprimirGuantesHTML(productos) {
   const contenedorGuantes = document.getElementById("guantes-container");
@@ -43,14 +15,14 @@ function imprimirGuantesHTML(productos) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.innerHTML = `
-					<img src="${guante.imagen}"
+					<img src="${guante.imagen}">
 					<h3>${guante.nombre}</h3>
           <h3>${guante.precio}</h3>
           <input type="number" 
              min="1" 
              step="1" 
              id="cantidad-${guante.id}" 
-             placeholder="Ingrese cantidad">
+             placeholder="  Ingrese cantidad">
           <p id="error-${guante.id}" class="error"></p>
 					<!-- Aquí generamos un nombre de id dinámico para cada botón
                     Esto lo hacemos para después poder obtenerlo y asignarle un evento -->
@@ -60,8 +32,9 @@ function imprimirGuantesHTML(productos) {
     contenedorGuantes.appendChild(card);
 
     // Eventos
+
     const boton = document.getElementById(`${guante.nombre}${guante.id}`);
-    // boton.addEventListener("click", () => agregarAlCarrito(guante));
+
     boton.addEventListener("click", () => {
       const cantidad = parseInt(
         document.getElementById(`cantidad-${guante.id}`).value
@@ -70,15 +43,14 @@ function imprimirGuantesHTML(productos) {
     });
   }
 }
+
 // Agregamos al carrito
 
 function agregarAlCarrito(guante, cantidad) {
-  const errorElemento = document.getElementById(`error-${guante.id}`);
   const inputCantidad = document.getElementById(`cantidad-${guante.id}`);
-  errorElemento.textContent = ""; // esto limpia el error si ya lo tenia
 
   if (isNaN(cantidad) || cantidad < 1) {
-    errorElemento.textContent = "Debe al menos comprar 1";
+    mostrarNotificacion("Debe al menos comprar 1");
     return;
   }
 
@@ -90,9 +62,7 @@ function agregarAlCarrito(guante, cantidad) {
   }
 
   if (cantidadEnCarrito + cantidad > guante.stock) {
-    errorElemento.textContent =
-      "Debe comprar máximo " + guante.stock + " par/pares";
-
+    mostrarNotificacion("Supera el stock disponible");
     return;
   }
 
@@ -103,12 +73,14 @@ function agregarAlCarrito(guante, cantidad) {
   if (existente) {
     existente.cantidad += cantidad;
     existente.subtotal += precioFinal;
+    mostrarNotificacion("Se actualizo la cantidad del producto");
   } else {
     carrito.push({
       nombre: guante.nombre,
       cantidad,
       subtotal: precioFinal,
     });
+    mostrarNotificacion("Se agrego el producto");
   }
 
   guardarCarrito();
@@ -126,25 +98,46 @@ function imprimirCarritoEnHTML() {
   contenedor.innerHTML = "";
   let total = 0;
 
-  for (const item of carrito) {
+  carrito.forEach((item, index) => {
     const li = document.createElement("li");
+    li.classList.add("item-carrito");
+
     if (item.cantidad == 1) {
-      li.textContent = `${item.cantidad} par de ${item.nombre} → $${item.subtotal}`;
+      li.innerHTML = `${item.cantidad} par de ${item.nombre} → $${item.subtotal}
+      <button class="btn-quitar"  data-index="${index}" title="Eliminar este producto">
+      ❌ </button>`;
     } else {
-      li.textContent = `${item.cantidad} pares de ${item.nombre} → $${item.subtotal}`;
+      li.innerHTML = `${item.cantidad} pares de ${item.nombre} → $${item.subtotal}
+      <button class="btn-quitar"  data-index="${index}" title="Eliminar este producto">
+      ❌ </button>`;
     }
 
     contenedor.appendChild(li);
 
     total += item.subtotal;
-  }
+  });
 
   totalElemento.textContent = `Total: $${total}`;
+
+  // Evento de quitar producto
+
+  const botonesQuitar = document.querySelectorAll(".btn-quitar");
+  botonesQuitar.forEach((btn) => {
+    btn.addEventListener("click", function (evento) {
+      const index = evento.target.getAttribute("data-index");
+      eliminarArticulo(index);
+    });
+  });
 }
 
 const btnVerCarrito = document.getElementById("btnVerCarrito");
 const btnBorrarCarrito = document.getElementById("btnBorrarCarrito");
 const carritoSection = document.getElementById("carrito-section");
+const btnComprar = document.getElementById("btnComprar");
+
+// Botones
+
+// Ver Carrito
 
 btnVerCarrito.addEventListener("click", () => {
   if (carritoSection.style.display === "none") {
@@ -156,14 +149,111 @@ btnVerCarrito.addEventListener("click", () => {
   }
 });
 
+// Borrar Carrito
+
 btnBorrarCarrito.addEventListener("click", () => {
-  carrito = [];
-  guardarCarrito();
-  imprimirCarritoEnHTML();
+  Swal.fire({
+    title: "Esta seguro de eliminar el carrito?",
+    showCancelButton: true,
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Aceptar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      carrito = [];
+      guardarCarrito();
+      imprimirCarritoEnHTML();
+    }
+  });
+});
+// Confirmar Carrito
+btnComprar.addEventListener("click", () => {
+  if (carrito.length === 0) {
+    Swal.fire({
+      title: "Carrito vacío",
+      text: "Agregá productos antes de comprar.",
+      icon: "warning",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+    return;
+  }
+
+  const total = carrito.reduce((acc, item) => acc + item.subtotal, 0);
+
+  Swal.fire({
+    title: "Confirmar compra",
+    text: `El total de tu compra es $${total}. ¿Desea confirmar?`,
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Sí, comprar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Vaciar carrito y storage
+      carrito = [];
+      guardarCarrito();
+      imprimirCarritoEnHTML();
+
+      Swal.fire({
+        title: "¡Gracias por tu compra!",
+        text: "Tu pedido fue registrado con éxito.",
+        icon: "success",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+    }
+  });
 });
 
-// Inicializar
-imprimirGuantesHTML(guantes);
+function mostrarNotificacion(texto) {
+  // Mostramos un mej con el resultado de la operacion
+  Toastify({
+    text: texto,
+    duration: 3000,
+    gravity: "bottom",
+    position: "center", // `left`, `center` or `right`
+    className: "toast",
+  }).showToast();
+}
+
+// A partir de un id se elimina el producto
+function eliminarArticulo(id) {
+  Swal.fire({
+    title: "Esta seguro de elimar el producto ?",
+    showCancelButton: true,
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Aceptar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const item = carrito[id];
+      carrito.splice(id, 1);
+      // Actualizar el carrito
+      guardarCarrito();
+      imprimirCarritoEnHTML();
+      mostrarNotificacion("El articulo fue eliminado con exito");
+    }
+  });
+}
+
+// Inicializar ahora con FETCH a la URL de la base JSON
+// 23/10/2025 Lo había puesto con url pero no me funcionó así que le puse el link
+// directo y lo tomó
+
+fetch("db.json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Error al cargar la base de guantes");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    imprimirGuantesHTML(data);
+  })
+  .catch((error) => {
+    console.error("Error al cargar productos:", error);
+  });
 if (carrito.length > 0) {
   imprimirCarritoEnHTML();
 }
