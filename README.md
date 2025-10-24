@@ -22,6 +22,8 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 
 
 
+---
+
 ## 🛠 Tecnologías usadas
 
 - HTML5  
@@ -38,6 +40,7 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 
    ```bash
    git clone https://github.com/FedericoMammana/entregable-2-Mammana.git
+
 2.
    Entra al directorio:
 
