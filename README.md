@@ -1,8 +1,8 @@
-# 🥊 Entregable 2 – Federico Mammana
+# 🥊 FINAL JS – Federico Mammana
 
 ## 📖 Descripción
 
-Este proyecto corresponde al **Entregable Nº 2** de Federico Mammana.  
+Este proyecto corresponde al **FINAL DE JAVA SCRIPT** de Federico Mammana.  
 Se trata de una **aplicación web desarrollada con HTML, CSS y JavaScript**, que muestra productos y permite interactuar con ellos mediante notificaciones.  
 Utiliza la librería **Toastify** para desplegar mensajes emergentes al usuario de forma visual y dinámica.  
 También incluye un archivo `db.json` que funciona como una **fuente de datos simulada** (mock).
