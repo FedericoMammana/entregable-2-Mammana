@@ -4,7 +4,7 @@
     "nombre": "Title Rojo",
     "marca": "Title",
     "precio": 50000,
-    "imagen": "../images/guante-rojo.jpg",
+    "imagen": "./images/guante-rojo.jpg",
     "stock": 10
   },
   {
@@ -12,7 +12,7 @@
     "nombre": "Rulz Gris",
     "marca": "Rulz",
     "precio": 60000,
-    "imagen": "../images/guante-gris.jpg",
+    "imagen": "./images/guante-gris.jpg",
     "stock": 20
   },
   {
@@ -20,7 +20,7 @@
     "nombre": "Title Silver",
     "marca": "Title",
     "precio": 70000,
-    "imagen": "../images/guante-platinum.jpg",
+    "imagen": "./images/guante-platinum.jpg",
     "stock": 30
   },
   {
@@ -28,7 +28,7 @@
     "nombre": "Title Gold",
     "marca": "Title",
     "precio": 145000,
-    "imagen": "../images/guante-gold.jpg",
+    "imagen": "./images/guante-gold.jpg",
     "stock": 12
   }
 ]
