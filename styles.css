@@ -163,10 +163,20 @@ footer p {
     width: 150px;
     height: 150px;
   }
+  .toast {
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+  }
 }
 @media (orientation: landscape) {
   .card img {
     width: 140px;
     height: 140px;
+  }
+  .toast {
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
   }
 }
