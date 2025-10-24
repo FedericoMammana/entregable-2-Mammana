@@ -15,10 +15,15 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 
 /
 ├─ images/ ← Carpeta con imágenes usadas en la app
+
 ├─ db.json ← Mock de datos (JSON)
+
 ├─ index.html ← Página principal
+
 ├─ index-nue.js ← Lógica JavaScript de la aplicación
+
 └─ styles.css ← Estilos CSS
+
 
 ## 🛠 Tecnologías usadas
 
@@ -39,7 +44,7 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 2.
    Entra al directorio:
 
-cd entregable-2-Mammana
+   cd entregable-2-Mammana
 
 3.
 Abre index.html directamente en tu navegador (o usa un servidor local como Live Server de VSCode para evitar problemas de CORS al consumir db.json).
