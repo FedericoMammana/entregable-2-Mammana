@@ -3,6 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: #eeeeee;
+}
+
 body,
 html {
   height: 100%;
@@ -13,6 +21,7 @@ body {
 header {
   text-align: center;
   background-color: #fff;
+  display: inline-block;
 }
 h1 {
   background-color: #fff;
@@ -136,4 +145,28 @@ footer p {
   color: #333;
   transition: background 0.3s, transform 0.2s;
   max-width: 400px;
+}
+@media (max-width: 844px) {
+  #guantes-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .card img {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media (max-width: 390px) {
+  #guantes-container {
+    grid-template-columns: 1fr;
+  }
+  .card img {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media (orientation: landscape) {
+  .card img {
+    width: 140px;
+    height: 140px;
+  }
 }
