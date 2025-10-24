@@ -1,12 +1,11 @@
-# Entrega Final – Mammana
+# 🥊 Entregable 2 – Federico Mammana
 
-## 📦 Descripción
+## 📖 Descripción
 
-Este proyecto es mi entrega final.  
-Se trata de una aplicación web que utiliza HTML, CSS y JavaScript para mostrar productos (o contenido) y gestionar interacciones con el usuario.  
-Incorpora la librería **Toastify** y **SweetAlert** para mostrar notificaciones al usuario (mensajes emergentes).
-
-El repositorio incluye también un archivo `db.json` que simula una base de datos local para usar con fetch (o similar) en el frontend.
+Este proyecto corresponde al **Entregable Nº 2** de Federico Mammana.  
+Se trata de una **aplicación web desarrollada con HTML, CSS y JavaScript**, que muestra productos y permite interactuar con ellos mediante notificaciones.  
+Utiliza la librería **Toastify** para desplegar mensajes emergentes al usuario de forma visual y dinámica.  
+También incluye un archivo `db.json` que funciona como una **fuente de datos simulada** (mock).
 
 ---
 
@@ -21,8 +20,8 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 └─ styles.css             ← Estilos CSS  
 
 
-
 ---
+```
 
 ## 🛠 Tecnologías usadas
 
@@ -40,13 +39,25 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 
    ```bash
    git clone https://github.com/FedericoMammana/entregable-2-Mammana.git
-
-2.
-   Entra al directorio:
-
+2. Ingresar al directorio del proyecto:
+    ```bash
    cd entregable-2-Mammana
+3. Abrir el archivo index.html en tu navegador.
+   👉 Si usás fetch() para leer el db.json, te conviene usar un servidor local como Live Server de VSCode para evitar errores de CORS.
 
-3.
-Abre index.html directamente en tu navegador (o usa un servidor local como Live Server de VSCode para evitar problemas de CORS al consumir db.json).
+4. Probar la aplicación:
 
-Interactúa con la aplicación: se mostrarán productos desde db.json y cuando se realicen acciones se desplegarán notificaciones con Toastify y SweetAlert.
+   Visualizá los productos cargados desde db.json.
+
+   Realizá acciones (por ejemplo, agregar al carrito) y verificá que aparezcan las notificaciones con Toastify y SweetAlert.
+
+✅ Qué verificar
+
+Los datos del db.json se cargan correctamente.
+
+Las notificaciones aparecen según las acciones del usuario.
+
+El diseño se adapta bien en distintas resoluciones (responsive).
+
+Las clases personalizadas de Toastify aplican correctamente.
+   
