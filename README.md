@@ -51,7 +51,7 @@ También incluye un archivo `db.json` que funciona como una **fuente de datos si
 
    Realizá acciones (por ejemplo, agregar al carrito) y verificá que aparezcan las notificaciones con Toastify y SweetAlert.
 
-✅ Qué verificar
+## ✅ Qué verificar
 
 Los datos del db.json se cargan correctamente.
 
