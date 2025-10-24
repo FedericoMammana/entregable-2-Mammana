@@ -12,16 +12,10 @@ El repositorio incluye también un archivo `db.json` que simula una base de dato
 
 ## 🗂 Estructura del proyecto
 
-
-/
 ├─ images/ ← Carpeta con imágenes usadas en la app
-
 ├─ db.json ← Mock de datos (JSON)
-
 ├─ index.html ← Página principal
-
 ├─ index-nue.js ← Lógica JavaScript de la aplicación
-
 └─ styles.css ← Estilos CSS
 
 
