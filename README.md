@@ -1,6 +1,6 @@
-Este proyecto es la entrega número 2 de Federico Mammana.  
+Este proyecto es mi entrega final. 
 Se trata de una aplicación web que utiliza HTML, CSS y JavaScript para mostrar productos (o contenido) y gestionar interacciones con el usuario.  
-Incorpora la librería **Toastify** para mostrar notificaciones al usuario (mensajes emergentes).
+Incorpora la librería **Toastify** y **SweetAlert** para mostrar notificaciones al usuario (mensajes emergentes).
 
 El repositorio incluye también un archivo `db.json` que simula una base de datos local para usar con fetch (o similar) en el frontend.
 
