@@ -17,7 +17,7 @@ function imprimirGuantesHTML(productos) {
     card.innerHTML = `
 					<img src="${guante.imagen}">
 					<h3>${guante.nombre}</h3>
-          <h3>${guante.precio}</h3>
+          <h3>$${guante.precio}</h3>
           <input type="number" 
              min="1" 
              step="1" 
@@ -166,7 +166,9 @@ btnBorrarCarrito.addEventListener("click", () => {
     }
   });
 });
+
 // Confirmar Carrito
+
 btnComprar.addEventListener("click", () => {
   if (carrito.length === 0) {
     Swal.fire({
