@@ -220,7 +220,7 @@ function mostrarNotificacion(texto) {
 // A partir de un id se elimina el producto
 function eliminarArticulo(id) {
   Swal.fire({
-    title: "Esta seguro de elimar el producto ?",
+    title: "¿Esta seguro de eliminar el producto?",
     showCancelButton: true,
     cancelButtonColor: "#d33",
     confirmButtonText: "Aceptar",
