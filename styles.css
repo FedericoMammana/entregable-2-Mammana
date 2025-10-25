@@ -155,7 +155,7 @@ footer p {
     height: 150px;
   }
 }
-@media (min-width: 360px) {
+@media (max-width: 767px) {
   #guantes-container {
     grid-template-columns: 1fr;
   }
